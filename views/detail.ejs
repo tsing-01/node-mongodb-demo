@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('templete/header', {}) %>
+  <title>Article Detail</title>
+</head>
+<body>
+  <%- include('templete/bar', { username: username || '', title: 'article detail' }) %>
+
+  <div class="article-detail">
+    <div class="detail-title"><%= item.title %></div>
+    <div class="detail-desc">
+      <span>AUTHOR: <%= item.author %></span>
+      <span>LAST MODIFIY: <%= item.update_time %></span>
+    </div>
+    <div class="article-content"><%- item.content %></div>
+  </div>
+</body>
+</html>

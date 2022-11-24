@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('templete/header', {}) %>
+  <title>Writting</title>
+</head>
+<body>
+  <%- include('templete/bar', { username: username || '', title: item.type == 2 ? 'edit article' : 'writting article'}) %>
+
+  <div class="write-container">
+    <form action="<%= item.type == 2 ? '/article/edit' : '/article/add' %>" method="post" class="write-form">
+      <input type="hidden" name="pageIndex" value="<%= item.pageIndex %>">
+      <input type="hidden" name="time" value="<%= item.time %>">
+      <input class="write-title" type="text" name="title" placeholder="Please enter article title" value="<%= item.title %>">
+      <textarea class="xheditor" name="content"><%= item.content %></textarea>
+      <span>Last Modified: <%= item.update_time %></span>
+      <input class="write-publish" type="submit" value="<%= item.type == 2 ? 'complete' : 'publish' %>">
+    </form>
+  </div>
+
+  <script type="text/javascript" src="/xheditor/jquery/jquery-1.4.4.min.js"></script>
+  <script type="text/javascript" src="/xheditor/xheditor-1.2.2.min.js"></script>
+  <script type="text/javascript" src="/xheditor/xheditor_lang/en.js"></script>
+  <script>
+    $('.xheditor').xheditor({
+      tools: 'full',
+      skin: 'default',
+      upImgUrl: '/article/upload',
+      html5Upload: false,
+      upMultiple: 1
+    })
+  </script>
+</body>
+</html>

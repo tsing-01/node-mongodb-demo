@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('templete/header', {}) %>
+  <title>Register</title>
+</head>
+<body>
+  <div class="user-container">
+    <h3>Register</h3>
+  
+    <div class="form-box">
+      <form action="/users/register" method="post">
+        <input type="text" name="username" value="" placeholder="Please enter your name"/>
+        <input type="password" name="password" value="" placeholder="Please enter your password"/>
+        <input type="password" name="password2" value="" placeholder="Please double check your passoword"/>
+        <input type="submit" value="Sign up"/>
+      </form>
+      <div class="register-link">Existing account <a href="/login">Login in</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('templete/header', {}) %>
+  <title>Home</title>
+</head>
+<body>
+  <%- include('templete/bar', { username: username || '', title: 'Home Page' }) %>
+
+  <table class="article-table">
+    <tr class="article-row">
+      <th style="width: 80px;">ORDER</th>
+      <th style="width: 180px;">TITLE</th>
+      <th style="width: 260px;">PUBLISH TIME</th>
+      <th style="width: 160px;">AUTHOR</th>
+      <th style="width: 180px;">OPERATIONS</th>
+    </tr>
+    <tbody>
+      <% data.list.map(function(item, index) { %>
+        <tr class="article-row">
+          <td style="width: 80px;"><%= index + 1 %></td>
+          <td style="width: 180px;"><a href="/detail?time=<%= item.time %>"><%= item.title %></a></td>
+          <td style="width: 260px;"><%= item.publish_time %></td>
+          <td style="width: 160px;"><%= item.author %></td>
+          <td style="width: 180px;">
+            <a href="/write?time=<%= item.time %>&pageIndex=<%= data.pageIndex %>">edit</a>
+            <a href="/article/delete?time=<%= item.time %>&pageIndex=<%= data.pageIndex %>">delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <% for(let i = 1; i <= data.total; i++) { %> 
+      <a class="<%= data.pageIndex == i ? 'active' : '' %>" href="/?pageIndex=<%= i %>"><%= i %></a>
+    <% } %>
+  </div>
+</body>
+</html>
